@@ -1,5 +1,6 @@
 {
     "java.project.sourcePaths": [
-        "desafios-de-projeto/desafio-poo-dio/src"
+        "desafios-de-projeto/desafio-poo-dio/src",
+        "desafios-de-projeto/modulo-05-sudoku-em-java/src"
     ]
 }
