@@ -1,0 +1,15 @@
+D:\Softwares_and_Utilities\Softwares\Git\bootcamp-dio-almaviva\desafios-de-projeto\modulo-07-board-manager\src\main\java\br\com\dio\board\entity\BlockRecord.java
+D:\Softwares_and_Utilities\Softwares\Git\bootcamp-dio-almaviva\desafios-de-projeto\modulo-07-board-manager\src\main\java\br\com\dio\board\entity\Board.java
+D:\Softwares_and_Utilities\Softwares\Git\bootcamp-dio-almaviva\desafios-de-projeto\modulo-07-board-manager\src\main\java\br\com\dio\board\entity\BoardColumn.java
+D:\Softwares_and_Utilities\Softwares\Git\bootcamp-dio-almaviva\desafios-de-projeto\modulo-07-board-manager\src\main\java\br\com\dio\board\entity\BoardColumnType.java
+D:\Softwares_and_Utilities\Softwares\Git\bootcamp-dio-almaviva\desafios-de-projeto\modulo-07-board-manager\src\main\java\br\com\dio\board\entity\Card.java
+D:\Softwares_and_Utilities\Softwares\Git\bootcamp-dio-almaviva\desafios-de-projeto\modulo-07-board-manager\src\main\java\br\com\dio\board\Main.java
+D:\Softwares_and_Utilities\Softwares\Git\bootcamp-dio-almaviva\desafios-de-projeto\modulo-07-board-manager\src\main\java\br\com\dio\board\persistence\config\ConnectionConfig.java
+D:\Softwares_and_Utilities\Softwares\Git\bootcamp-dio-almaviva\desafios-de-projeto\modulo-07-board-manager\src\main\java\br\com\dio\board\persistence\dao\BlockDAO.java
+D:\Softwares_and_Utilities\Softwares\Git\bootcamp-dio-almaviva\desafios-de-projeto\modulo-07-board-manager\src\main\java\br\com\dio\board\persistence\dao\BoardColumnDAO.java
+D:\Softwares_and_Utilities\Softwares\Git\bootcamp-dio-almaviva\desafios-de-projeto\modulo-07-board-manager\src\main\java\br\com\dio\board\persistence\dao\BoardDAO.java
+D:\Softwares_and_Utilities\Softwares\Git\bootcamp-dio-almaviva\desafios-de-projeto\modulo-07-board-manager\src\main\java\br\com\dio\board\persistence\dao\CardDAO.java
+D:\Softwares_and_Utilities\Softwares\Git\bootcamp-dio-almaviva\desafios-de-projeto\modulo-07-board-manager\src\main\java\br\com\dio\board\service\BoardService.java
+D:\Softwares_and_Utilities\Softwares\Git\bootcamp-dio-almaviva\desafios-de-projeto\modulo-07-board-manager\src\main\java\br\com\dio\board\service\CardService.java
+D:\Softwares_and_Utilities\Softwares\Git\bootcamp-dio-almaviva\desafios-de-projeto\modulo-07-board-manager\src\main\java\br\com\dio\board\ui\BoardMenu.java
+D:\Softwares_and_Utilities\Softwares\Git\bootcamp-dio-almaviva\desafios-de-projeto\modulo-07-board-manager\src\main\java\br\com\dio\board\ui\MainMenu.java
