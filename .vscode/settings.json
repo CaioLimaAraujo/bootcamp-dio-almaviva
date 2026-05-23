@@ -2,6 +2,7 @@
     "java.project.sourcePaths": [
         "desafios-de-projeto/desafio-poo-dio/src",
         "desafios-de-projeto/modulo-05-sudoku-em-java/src",
-        "desafios-de-projeto/modulo-06-acervo-api/src/main/java"
+        "desafios-de-projeto/modulo-06-acervo-api/src/main/java",
+        "desafios-de-projeto/modulo-07-board-manager/src/main/java"
     ]
 }
