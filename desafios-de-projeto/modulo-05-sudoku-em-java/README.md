@@ -1,10 +1,10 @@
-# 🎮 Sudoku em Java com Interface Gráfica Swing
+# Projeto II — Sudoku em Java
 
-## Apresentação / Contextualização
+## Apresentação e Contextualização
 
-Este projeto foi desenvolvido como parte do **Módulo 5 — Programação Orientada a Objetos e Estruturas de Dados com Java** do Bootcamp Backend Java & QA, parceria entre **Almaviva** e **DIO (Digital Innovation One)**.
+Esse foi o segundo *Projeto de Código* do Módulo **Domínio de Collections e Streams API**.
 
-O desafio consiste em implementar um jogo de Sudoku funcional em Java, com interface gráfica desenvolvida com a biblioteca **Swing**, aplicando os conceitos de **Orientação a Objetos**, **Collections Framework**, **enums** e **separação de responsabilidades** entre camadas do projeto.
+O desafio consistia em implementar um jogo de Sudoku funcional em Java, aplicando os conceitos de Orientação a Objetos, Collections Framework, enums e separação de responsabilidades entre camadas do projeto. O enunciado original pedia uma interface via terminal; optei por desenvolver a interface gráfica com a biblioteca **Swing**, tornando o projeto mais próximo de uma aplicação real.
 
 Os números iniciais do tabuleiro são fornecidos via argumentos de linha de comando (`args`), no formato `coluna,linha,valor,fixo`.
 
@@ -12,29 +12,30 @@ Os números iniciais do tabuleiro são fornecidos via argumentos de linha de com
 
 ## Documentação Técnica
 
-### Estrutura do Projeto
+![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
+![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
 
-```
-modulo-05-sudoku-em-java/
-├── Main.java                      → Ponto de entrada; parsing dos args e inicialização da UI
-└── src/
-    ├── model/
-    │   ├── Cell.java              → Representa uma célula do tabuleiro
-    │   ├── GameStatus.java        → Enum com os estados do jogo
-    │   └── SudokuBoard.java       → Lógica central do tabuleiro
-    ├── service/
-    │   └── SudokuValidator.java   → Validação completa do tabuleiro
-    └── view/
-        ├── BoardPanel.java        → Painel visual do tabuleiro (Swing)
-        └── SudokuFrame.java       → Janela principal com menu de ações
-```
+**Paradigma:** Orientado a Objetos  
+**Recursos utilizados:** Swing, Collections Framework, enums, separação em camadas (`model`, `service`, `view`)
+
+### Estrutura de Classes
+
+    modulo-05-sudoku-em-java/
+    ├── Main.java                      → Ponto de entrada; parsing dos args e inicialização da UI
+    └── src/
+        ├── model/
+        │   ├── Cell.java              → Representa uma célula do tabuleiro
+        │   ├── GameStatus.java        → Enum com os estados do jogo
+        │   └── SudokuBoard.java       → Lógica central do tabuleiro
+        ├── service/
+        │   └── SudokuValidator.java   → Validação completa do tabuleiro
+        └── view/
+            ├── BoardPanel.java        → Painel visual do tabuleiro (Swing)
+            └── SudokuFrame.java       → Janela principal com menu de ações
 
 ### Descrição das Classes
 
-**`GameStatus.java`** — enum com três estados possíveis do jogo:
-- `NOT_STARTED` → jogo ainda não iniciado
-- `INCOMPLETE` → jogo em andamento
-- `COMPLETE` → jogo concluído com sucesso
+**`GameStatus.java`** — enum com três estados possíveis do jogo: `NOT_STARTED`, `INCOMPLETE` e `COMPLETE`.
 
 **`Cell.java`** — modela uma célula individual do tabuleiro com os atributos `value` (número atual), `fixed` (se é número inicial), `solution` (resposta correta) e `draftNumbers` (rascunhos do jogador).
 
@@ -48,15 +49,11 @@ modulo-05-sudoku-em-java/
 
 ### Como Executar
 
-**Compilar:**
-```bash
-javac -d out src/model/Cell.java src/model/GameStatus.java src/model/SudokuBoard.java src/service/SudokuValidator.java src/view/BoardPanel.java src/view/SudokuFrame.java Main.java
-```
+    # Compilar
+    javac -d out src/model/Cell.java src/model/GameStatus.java src/model/SudokuBoard.java src/service/SudokuValidator.java src/view/BoardPanel.java src/view/SudokuFrame.java Main.java
 
-**Executar:**
-```bash
-java -cp out Main "col,lin,valor,fixo" ...
-```
+    # Executar
+    java -cp out Main "col,lin,valor,fixo" ...
 
 **Exemplo de argumento:** `"0,0,4,false"` → coluna 0, linha 0, valor 4, célula não fixa (aparece vazia para o jogador preencher).
 
@@ -64,8 +61,4 @@ java -cp out Main "col,lin,valor,fixo" ...
 
 ## Relatório Pessoal
 
-Este foi o projeto mais complexo do bootcamp até o momento. A principal dificuldade foi compreender o formato dos argumentos de entrada — que incluem não só a posição e o valor, mas também se a célula é fixa ou não, e a solução correta embutida em cada célula não fixa.
-
-A separação em camadas (`model`, `service`, `view`) foi fundamental para manter o código organizado e legível, aplicando na prática o princípio de **separação de responsabilidades** da OOP. O `SudokuBoard` cuida da lógica incremental célula a célula, enquanto o `SudokuValidator` valida o estado global do tabuleiro — duas responsabilidades distintas que justificam classes distintas.
-
-A interface gráfica com **Swing** foi um diferencial pessoal em relação ao menu de terminal exigido pelo enunciado, tornando o projeto mais próximo de uma aplicação real e mais relevante para o portfólio.
+Esse foi um dos *Projetos de Código* que mais gostei de fazer, pois tive a oportunidade de desenvolver um pequeno frontend com o Java Swing, já tive um breve contato com HTML/CSS em cursos livres anteriormente, mas foi nesse Bootcamp aqui onde tive a oportunidade de fazer algo muito mais complexo e responsivo do que uma simples landing page. Conseguir executar o programa e ver ele rodando na prática da maneira responsiva e visual foi emocionante.

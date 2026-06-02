@@ -1,62 +1,52 @@
-# Board Manager
-
-Sistema de gerenciamento de tarefas em estilo Kanban com persistência em banco de dados MySQL.  
-Desenvolvido como projeto do **Bootcamp Java & QA — DIO × Almaviva** (M7.P5 — Técnicas Avançadas, Padrões e Persistência).
-
----
+# Projeto IV — Task Board Manager
 
 ## Apresentação e Contextualização
 
-O projeto consiste em uma aplicação de console que permite criar e gerenciar boards no estilo Kanban, com persistência completa em banco de dados relacional.
+Esse foi o quarto *Projeto de Código* do Módulo **Banco de Dados para Desenvolvimento Backend em Java**.
 
-Cada board é composto por colunas customizáveis — uma coluna inicial, zero ou mais colunas pendentes, uma coluna final e uma coluna de cancelamento — seguindo regras rígidas de movimentação entre elas. Os cards navegam pelas colunas em ordem, podendo ser bloqueados com justificativa e cancelados a qualquer momento, exceto quando já concluídos.
+O projeto consiste em uma aplicação de console que permite criar e gerenciar boards no estilo Kanban, com persistência completa em banco de dados relacional. Cada board é composto por colunas customizáveis — uma coluna inicial, zero ou mais colunas pendentes, uma coluna final e uma coluna de cancelamento — seguindo regras rígidas de movimentação entre elas. Os cards navegam pelas colunas em ordem, podendo ser bloqueados com justificativa e cancelados a qualquer momento, exceto quando já concluídos.
 
 ---
 
 ## Documentação Técnica
 
-### Tecnologias
+![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
+![Maven](https://img.shields.io/badge/Maven-C71A36?style=for-the-badge&logo=apachemaven&logoColor=white)
+![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
+![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
 
-- Java 17
-- Maven
-- MySQL 8
-- JDBC (`mysql-connector-j 8.3.0`)
+**Paradigma:** Orientado a Objetos  
+**Recursos utilizados:** JDBC (`mysql-connector-j 8.3.0`), SQL (DDL/DML), transações, variáveis de ambiente
 
 ### Arquitetura
 
-```
-Main
- └── MainMenu (UI)
-      ├── BoardService ──── BoardDAO       ──── MySQL
-      │                └── BoardColumnDAO
-      └── BoardMenu (UI)
-           ├── BoardService
-           └── CardService ─── CardDAO    ──── MySQL
-                           └── BlockDAO
-```
+    Main
+     └── MainMenu (UI)
+          ├── BoardService ──── BoardDAO       ──── MySQL
+          │                └── BoardColumnDAO
+          └── BoardMenu (UI)
+               ├── BoardService
+               └── CardService ─── CardDAO    ──── MySQL
+                               └── BlockDAO
 
 ### Estrutura de Pacotes
 
-```
-br.com.dio.board
-├── entity/          → Entidades do domínio (Board, BoardColumn, Card, BlockRecord, BoardColumnType)
-├── persistence/
-│   ├── config/      → Configuração de conexão JDBC (ConnectionConfig)
-│   └── dao/         → Acesso ao banco de dados (BoardDAO, BoardColumnDAO, CardDAO, BlockDAO)
-├── service/         → Regras de negócio (BoardService, CardService)
-├── ui/              → Interface de console (MainMenu, BoardMenu)
-└── Main.java        → Ponto de entrada da aplicação
-```
+    br.com.dio.board
+    ├── entity/          → Entidades do domínio (Board, BoardColumn, Card, BlockRecord, BoardColumnType)
+    ├── persistence/
+    │   ├── config/      → Configuração de conexão JDBC (ConnectionConfig)
+    │   └── dao/         → Acesso ao banco de dados (BoardDAO, BoardColumnDAO, CardDAO, BlockDAO)
+    ├── service/         → Regras de negócio (BoardService, CardService)
+    ├── ui/              → Interface de console (MainMenu, BoardMenu)
+    └── Main.java        → Ponto de entrada da aplicação
 
 ### Banco de Dados
 
-```sql
-BOARD               → Armazena os boards criados
-BOARD_COLUMN        → Colunas de cada board, com tipo e ordem
-CARD                → Cards vinculados às colunas
-BLOCK               → Histórico de bloqueios e desbloqueios
-CARD_COLUMN_HISTORY → Histórico de movimentação dos cards entre colunas
-```
+    BOARD               → Armazena os boards criados
+    BOARD_COLUMN        → Colunas de cada board, com tipo e ordem
+    CARD                → Cards vinculados às colunas
+    BLOCK               → Histórico de bloqueios e desbloqueios
+    CARD_COLUMN_HISTORY → Histórico de movimentação dos cards entre colunas
 
 ### Regras de Negócio
 
@@ -69,47 +59,27 @@ CARD_COLUMN_HISTORY → Histórico de movimentação dos cards entre colunas
 | Card bloqueado não pode ser movido nem cancelado | Verificação em `moveCard()` e `cancelCard()` |
 | Bloquear e desbloquear exige justificativa | Parâmetro obrigatório + registro em `BLOCK` |
 
----
+### Segurança
 
-## Como Executar
+A senha do banco de dados não está hardcoded no código-fonte — ela é lida via variáveis de ambiente, evitando a exposição de credenciais no repositório. Essa decisão foi tomada proativamente antes de subir o projeto, ao identificar que seguir o passo a passo sem esse ajuste criaria uma brecha de segurança real em um ambiente de produção.
 
-### Pré-requisitos
+    export DB_USER=root
+    export DB_PASSWORD=sua_senha
 
-- JDK 17+
-- Maven 3.8+
-- MySQL 8+
+### Como Executar
 
-### Configuração do banco
+**Pré-requisitos:** JDK 17+, Maven 3.8+, MySQL 8+
 
-```bash
-mysql -u root -p -e "CREATE DATABASE board_db;"
-mysql -u root -p board_db < schema.sql
-```
+    # Configurar o banco de dados
+    mysql -u root -p -e "CREATE DATABASE board_db;"
+    mysql -u root -p board_db < schema.sql
 
-### Variáveis de ambiente
-
-A senha do banco não está hardcoded no código — é lida via variáveis de ambiente para evitar exposição no repositório:
-
-```bash
-export DB_USER=root
-export DB_PASSWORD=sua_senha
-```
-
-### Compilar e executar
-
-```bash
-mvn compile
-mvn exec:java -Dexec.mainClass="br.com.dio.board.Main"
-```
+    # Compilar e executar
+    mvn compile
+    mvn exec:java -Dexec.mainClass="br.com.dio.board.Main"
 
 ---
 
 ## Relatório Pessoal
 
-A experiência de desenvolver esse projeto foi agradável e reveladora. Ao iniciar os estudos em programação, tive a sensação de que muitas coisas seriam extremamente difíceis de realizar. Esse projeto, assim como os outros do bootcamp, mostrou que superestimei bastante a dificuldade de desenvolver aplicações — mesmo as mais simples. Foi muito satisfatório ver na prática como uma aplicação real é estruturada.
-
-Uma das observações mais interessantes foi perceber que há padrões universais que se repetem entre os projetos: a estrutura de pastas, a separação de responsabilidades em camadas, a forma como os arquivos se organizam. Fica claro que as coisas não são aleatórias — há uma lógica consistente por trás de tudo.
-
-Outro ponto que me chamou atenção foi a questão da segurança: percebi que deixar a senha do banco de dados hardcoded no código seria uma vulnerabilidade real caso o projeto fosse publicado no GitHub. Resolver isso com variáveis de ambiente antes do push foi uma lição prática de boas práticas que ficou bem fixada.
-
-A principal dificuldade continua sendo a execução de comandos no terminal — saber exatamente quando, onde e como executar cada comando ainda gera alguma confusão, mas cada projeto tem ajudado a tornar isso mais natural.
+Esse foi meu primeiro contato prático com banco de dados relacionais, e acredito que talvez tenha sido o projeto mais complexo do Bootcamp, e até mesmo mais significativo para mim, pois pude perceber uma possível brecha de segurança antes mesmo de concluir o projeto e subir ele no GitHub. Ao longo do Bootcamp, utilizei o Claude como colaborador e ferramenta para me auxiliar no desenvolvimento dos *Desafios de Código* e *Desafios de Projeto*, e caso eu estivesse cegamente copiando e colando os códigos que ele me escrevia e cegamente seguindo o passo a passo que ele me orientava, eu teria exposto a senha do banco de dados no código-fonte, e ter percebido essa possível brecha de segurança e previnido ela em vez de remediar ela no futuro, me é motivo de muito orgulho, pois isso vai de encontro com aquilo que acredito ser o emprego sensato da inteligência artificial em desenvolvimento de software (e até mesmo em geral): usar ela como uma ferramenta de auxílio, e no máximo como colaborador, e nunca como um substituto completo ao terceirizar tanto nosso pensamento crítico para ela.
